@@ -31,7 +31,8 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $item->name }} ({{ $item->users->count() }})</td>
                         <td>{{ $item->userDetail->name ?? '' }}</td>
-                        <td><a href="#" class="btn btn-primary">Phân quyền</a></td>
+                        <td><a href="{{ route('admin.groups.permission', ['group' => $item]) }}" class="btn btn-primary">Phân
+                                quyền</a></td>
                         <td><a href="{{ route('admin.groups.edit', [$item]) }}" class="btn btn-warning">Sửa</a></td>
                         @if ($item->users->count() == 0)
                             <td><a href="{{ route('admin.groups.delete', [$item]) }}" class="btn btn-danger"

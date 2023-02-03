@@ -53,6 +53,10 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function(){
         Route::post('/edit/{group}',[GroupsController::class,'postEdit']);
 
         Route::get('/delete/{group}',[GroupsController::class,'delete'])->name('delete');
+
+        Route::get('/permission/{group}',[GroupsController::class,'permission'])->name('permission');
+
+        Route::post('/permission/{group}',[GroupsController::class,'postPermission']);
     });
 
 });
