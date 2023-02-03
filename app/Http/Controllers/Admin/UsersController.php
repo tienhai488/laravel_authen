@@ -91,7 +91,7 @@ class UsersController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->group_id = $request->group_id;
-        $user->user_id = Auth::user()->id;
+        // $user->user_id = Auth::user()->id;
         $user->updated_at = date('Y-m-d H:i:s');
 
         $user->save();

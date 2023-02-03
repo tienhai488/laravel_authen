@@ -45,6 +45,14 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function(){
         Route::get('/',[GroupsController::class,'index'])->name('index');
         
         Route::get('/add',[GroupsController::class,'add'])->name('add');
+
+        Route::post('/add',[GroupsController::class,'postAdd']);
+
+        Route::get('/edit/{group}',[GroupsController::class,'edit'])->name('edit');
+
+        Route::post('/edit/{group}',[GroupsController::class,'postEdit']);
+
+        Route::get('/delete/{group}',[GroupsController::class,'delete'])->name('delete');
     });
 
 });

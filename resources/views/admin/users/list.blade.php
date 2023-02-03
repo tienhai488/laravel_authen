@@ -16,7 +16,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>STT</th>
+                <th width="5%">STT</th>
                 <th>Họ tên</th>
                 <th>Nhóm</th>
                 <th width="5%">Sửa</th>
