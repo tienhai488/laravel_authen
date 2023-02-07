@@ -29,8 +29,9 @@
                                     @foreach ($roleList as $roleValue => $roleLabel)
                                         <div class="col-2">
                                             <label for="role_{{ $item->name }}_{{ $roleValue }}">
-                                                <input name="role[{{ $item->name }}][]" value="{{ $roleValue }}"
-                                                    type="checkbox" id="role_{{ $item->name }}_{{ $roleValue }}"
+                                                <input class="checkbox_permission" name="role[{{ $item->name }}][]"
+                                                    value="{{ $roleValue }}" type="checkbox"
+                                                    id="role_{{ $item->name }}_{{ $roleValue }}"
                                                     {{ isRole($roleCheckeds, $item->name, $roleValue) ? 'checked' : false }}>
                                                 {{ $roleLabel }}
                                             </label>
@@ -40,8 +41,9 @@
                                     @if ($item->name == 'groups')
                                         <div class="col-2">
                                             <label for="role_{{ $item->name }}_permission">
-                                                <input name="role[{{ $item->name }}][]" value="permission"
-                                                    type="checkbox" id="role_{{ $item->name }}_permission"
+                                                <input class="checkbox_permission" name="role[{{ $item->name }}][]"
+                                                    value="permission" type="checkbox"
+                                                    id="role_{{ $item->name }}_permission"
                                                     {{ isRole($roleCheckeds, $item->name, 'permission') ? 'checked' : false }}>
                                                 Phân quyền
                                             </label>
@@ -54,8 +56,19 @@
                 @endif
             </tbody>
         </table>
+        <button class="btn btn-danger btn-drop">Hủy tất cả</button>
+        <hr>
         <button type="submit" class="btn btn-primary">Phân quyền</button>
         <a href="{{ route('admin.groups.index') }}" class="btn btn-warning">Quay lại</a>
         @csrf
     </form>
+@endsection
+
+@section('script')
+    const btn_drop = document.querySelector('.btn-drop');
+    const checkboxs = document.querySelectorAll('.checkbox_permission');
+    btn_drop.onclick = (e)=>{
+    e.preventDefault();
+    checkboxs.forEach(item=>item.checked = false)
+    }
 @endsection
