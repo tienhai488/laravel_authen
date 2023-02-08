@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Module;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,16 +79,16 @@ class GroupsController extends Controller
             'edit'=>'Sửa',
             'delete'=>'Xóa',
         ];
-
+        
         if(!empty($group->permission)){
             $roleCheckeds = json_decode($group->permission,true);
         }else{
             $roleCheckeds = [];
         }
-
+        
         return view('admin.groups.permission',compact('group','modules','roleList','roleCheckeds'));
     }
-
+    
     public function postPermission(Request $request,Group $group){
         if(!empty($request->role)){
             $roleArr = $request->role;

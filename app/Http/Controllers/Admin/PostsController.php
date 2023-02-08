@@ -17,7 +17,7 @@ class PostsController extends Controller
     public function add(){
         return view('admin.posts.add');
     }
-
+    
     public function postAdd(Request $request){
         $request->validate([
             'title'=>'required',
@@ -26,23 +26,23 @@ class PostsController extends Controller
             'title.required'=>'Tiêu đề bắt buộc phải nhập!',
             'content.required'=>'Nội dung bắt buộc phải nhập!',
         ]);
-
+        
         $post = new Post();
-
+        
         $post->title = $request->title;
         $post->content = $request->content;
         $post->user_id = Auth::user()->id;
         $post->created_at = date('Y-m-d H:i:s');
-
+        
         $post->save();
         
         return redirect()->route('admin.posts.index')->with('msg','Thêm bài viết thành công!');
     }
-
+    
     public function edit(Request $request,Post $post){
         return view('admin.posts.edit',compact('post'));
     }
-
+    
     public function postEdit(Request $request,Post $post){
         $request->validate([
             'title'=>'required',
